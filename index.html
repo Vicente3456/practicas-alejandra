@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ingrid Alejandra - Unidad 1</title>
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --vino: #5a0f1b;        /* rojo vino oscuro */
+      --rojo-fuerte: #b71c1c; /* rojo fuerte */
+      --rojo: #d32f2f;        /* rojo normal */
+      --negro: #000000;
+      --bg: #fff3f3;          /* fondo claro con tono rojo suave */
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family: Montserrat, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--negro);
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* NAV */
+    .navbar{
+      position:fixed;
+      top:0; left:0; right:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 20px;
+      z-index:50;
+      background: linear-gradient(90deg, var(--vino), var(--rojo-fuerte));
+      color:#fff;
+    }
+    .brand{
+      color:#fff;
+      font-weight:800;
+      letter-spacing:1px;
+      text-decoration:none;
+      background:var(--negro);
+      padding:6px 10px;
+      border-radius:6px;
+      font-size:13px;
+    }
+    .menu{display:flex;gap:18px;align-items:center}
+    .unit{position:relative}
+    .unit > button{
+      background:none;border:none;color:#fff;font-weight:700;padding:8px 12px;cursor:pointer;font-family:inherit;
+    }
+    .dropdown{
+      position:absolute;top:calc(100% + 6px);left:0;
+      min-width:200px;background:var(--rojo-fuerte);border-radius:8px;
+      box-shadow:0 8px 24px rgba(2,6,23,0.2);overflow:hidden;display:none;
+    }
+    .dropdown a{display:block;padding:10px 12px;text-decoration:none;color:#fff;font-weight:600;font-size:14px}
+    .dropdown a:hover{background:var(--vino);color:#fff}
+    .unit.open .dropdown{display:block}
+
+    /* HERO (portada) */
+    .hero{
+      height:80vh;
+      min-height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      position:relative;
+      overflow:hidden;
+      margin-top:64px;
+      background: url('fondo.png') center/cover no-repeat;
+    }
+    .hero::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,0.5), rgba(183, 28, 28, 0.9));
+      z-index:1;
+      pointer-events:none;
+    }
+
+    .title-wrap{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      padding:20px;
+      width:100%;
+      max-width:1200px;
+    }
+
+    /* Nombre + datos */
+    .title-wrap h1,
+    .title-wrap h2{
+      margin:0 auto;
+      display:block;
+      font-family: 'Anton', sans-serif;
+      font-weight:900;
+      font-size: clamp(70px, 30vw, 100px);
+      line-height:1.02;
+      text-transform:uppercase;
+      letter-spacing:2px;
+
+      /* efecto: la imagen de fondo se muestra solo dentro del texto */
+      background: url('fondo.avif') center/cover no-repeat;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .title-wrap h2{ font-size: clamp(28px, 6vw, 54px); }
+
+    .site-footer{
+      padding:20px;text-align:center;
+      color:var(--vino);
+      font-size:13px;
+      background:#fff;
+    }
+
+    @media (max-width:720px){
+      .dropdown{left:auto;right:0}
+      .title-wrap h1, .title-wrap h2{font-size: clamp(22px, 7vw, 40px)}
+      .navbar{padding:8px 12px}
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar" role="banner">
+    <a class="brand" href="index.html">INGRID ALEJANDRA SANCHEZ DE LA CRUZ</a>
+
+    <nav class="menu" aria-label="Menú principal">
+      <div class="unit" id="unit1">
+        <button aria-haspopup="true">UNIDAD 1 CIBERSEGURIDAD ▾</button>
+        <div class="dropdown" role="menu">
+          <a href="alejandra02.html">Conceptos</a>
+          <a href="alejandra03.html">Ataques</a>
+          <a href="index3.html">Protección</a>
+        </div>
+      </div>
+
+      <div class="unit" id="unit2">
+        <button aria-haspopup="true">UNIDAD 2 ▾</button>
+        <div class="dropdown" role="menu">
+          <a href="index4.html">Conceptos</a>
+          <a href="index5.html">Ataques</a>
+          <a href="index6.html">Protección</a>
+        </div>
+      </div>
+
+      <div class="unit" id="unit3">
+        <button aria-haspopup="true">UNIDAD 3 ▾</button>
+        <div class="dropdown" role="menu">
+          <a href="index7.html">Conceptos</a>
+          <a href="index8.html">Ataques</a>
+          <a href="index9.html">Protección</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" role="main" aria-labelledby="titulo-principal">
+      <div class="title-wrap">
+        <h1 id="titulo-principal">INGRID ALEJANDRA SANCHEZ DE LA CRUZ</h1>
+        <h2>PROGRAMACIÓN 5TO A — CONSTRUYE APLICACIONES WEB</h2>
+      </div>
+    </section>
+
+    <section class="site-footer" aria-label="Pie de página">
+      © 2025 — Ingrid Alejandra Sánchez De La Cruz · Construye Prácticas
+    </section>
+  </main>
+
+  <script>
+    document.querySelectorAll('.unit').forEach(unit=>{
+      const btn = unit.querySelector('button');
+      btn.addEventListener('click', ()=>{
+        const isOpen = unit.classList.contains('open');
+        document.querySelectorAll('.unit.open').forEach(u=>u.classList.remove('open'));
+        if(!isOpen) unit.classList.add('open');
+      });
+    });
+    document.addEventListener('click', e=>{ if(!e.target.closest('.unit')) document.querySelectorAll('.unit.open').forEach(u=>u.classList.remove('open')) });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') document.querySelectorAll('.unit.open').forEach(u=>u.classList.remove('open')) });
+  </script>
+</body>
+</html>

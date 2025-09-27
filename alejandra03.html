@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unidad 1 - Ataques</title>
+
+  <!-- Tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --vino: #5c1b1b;
+      --rojo-fuerte: #b83232;
+      --rojo-normal: #e04a4a;
+      --negro: #000000;
+      --gris-claro: #f9f9f9;
+    }
+
+    body{
+      margin:0;
+      font-family: 'Orbitron', sans-serif;
+      background: var(--gris-claro);
+      color: var(--negro);
+    }
+
+    /* NAV */
+    .navbar{
+      position:sticky;
+      top:0;
+      left:0;
+      right:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 20px;
+      background: linear-gradient(90deg, var(--vino), var(--rojo-fuerte));
+      color:#fff;
+      z-index:1000;
+    }
+    .brand{
+      color:#fff;
+      font-weight:800;
+      letter-spacing:1px;
+      text-decoration:none;
+      font-size:14px;
+    }
+    .menu{display:flex;gap:18px;align-items:center}
+    .unit{position:relative}
+    .unit > button{
+      background:none;border:none;color:#fff;font-weight:700;padding:8px 12px;cursor:pointer;font-family:inherit;
+    }
+    .dropdown{
+      position:absolute;top:calc(100% + 6px);left:0;
+      min-width:200px;background:#fff;border-radius:8px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.2);
+      display:none;
+    }
+    .dropdown a{
+      display:block;
+      padding:10px 12px;
+      text-decoration:none;
+      color:var(--vino);
+      font-weight:600;
+      font-size:14px;
+    }
+    .dropdown a:hover{background:var(--rojo-normal);color:#fff}
+    .unit.open .dropdown{display:block}
+
+    /* CONTENIDO */
+    .container{
+      max-width:1100px;
+      margin:90px auto 40px;
+      padding:20px;
+    }
+
+    h1{
+      text-align:center;
+      font-size:clamp(28px, 5vw, 52px);
+      color:var(--vino);
+      margin-bottom:30px;
+      border-bottom:4px solid var(--rojo-fuerte);
+      padding-bottom:10px;
+    }
+
+    /* TABLA */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      box-shadow:0 6px 20px rgba(0,0,0,0.15);
+      border-radius:12px;
+      overflow:hidden;
+    }
+    thead{
+      background:var(--vino);
+      color:#fff;
+    }
+    thead th{
+      padding:14px;
+      font-size:16px;
+      text-transform:uppercase;
+      border-bottom:2px solid var(--rojo-fuerte);
+    }
+    tbody td{
+      padding:14px;
+      font-size:15px;
+      border-bottom:1px solid #ddd;
+      vertical-align:top;
+    }
+    tbody tr:hover{
+      background:rgba(184,50,50,0.1);
+    }
+    .ataque{
+      font-weight:700;
+      color:var(--rojo-fuerte);
+      font-size:16px;
+    }
+    tbody img{
+      max-width:120px;
+      border-radius:8px;
+      display:block;
+      margin:6px auto;
+    }
+
+    /* FOOTER */
+    .site-footer{
+      padding:20px;
+      text-align:center;
+      color:var(--vino);
+      font-size:13px;
+      background:#fff;
+      margin-top:50px;
+    }
+
+    @media (max-width:900px){
+      thead th, tbody td { padding:10px; font-size:14px; }
+      tbody img { max-width:90px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="navbar">
+    <a class="brand" href="index.html">INGRID ALEJANDRA SANCHEZ DE LA CRUZ</a>
+    <nav class="menu">
+      <a href="index.html" style="color:#fff; text-decoration:none; font-weight:700;">Inicio</a>
+
+      <div class="unit">
+        <button>UNIDAD 1 ▾</button>
+        <div class="dropdown">
+          <a href="alejandra02.html">Conceptos</a>
+          <a href="alejandra03.html">Ataques</a>
+          <a href="alejandra04.html">Protección</a>
+        </div>
+      </div>
+
+      <div class="unit">
+        <button>UNIDAD 2 ▾</button>
+        <div class="dropdown">
+          <a href="index4.html">Conceptos</a>
+          <a href="index5.html">Ataques</a>
+          <a href="index6.html">Protección</a>
+        </div>
+      </div>
+
+      <div class="unit">
+        <button>UNIDAD 3 ▾</button>
+        <div class="dropdown">
+          <a href="index7.html">Conceptos</a>
+          <a href="index8.html">Ataques</a>
+          <a href="index9.html">Protección</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="container">
+    <h1>Ataques Informáticos (Unidad 1)</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Ataque</th>
+          <th>Descripción</th>
+          <th>Consecuencias</th>
+          <th>Ejemplo / Caso real</th>
+          <th>Imagen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ataque">Phishing</td>
+          <td>Mensajes (email, SMS, redes) o páginas que suplantan identidades para convencer al usuario de revelar credenciales o datos sensibles.</td>
+          <td>Robo de identidad, acceso no autorizado a cuentas bancarias o correo, fraude financiero y robo de información.</td>
+          <td>Correo que simula ser del banco pidiendo verificar la cuenta mediante un link falso que captura la contraseña.</td>
+          <td><img src="https://cdn.shopify.com/s/files/1/0229/0839/articles/phishing.jpg?v=1727292980" alt="Phishing"></td>
+        </tr>
+
+        <tr>
+          <td class="ataque">Malware</td>
+          <td>Software malicioso (virus, gusanos, troyanos) diseñado para dañar, espiar o controlar equipos y redes.</td>
+          <td>Corrupción de archivos, pérdida de rendimiento, robo de datos confidenciales, puertas traseras persistentes.</td>
+          <td>Descarga de software pirata que incluye malware; ejecución de adjuntos maliciosos.</td>
+          <td><img src="https://www.tarlogic.com/wp-content/uploads/2024/02/Tipos-de-malware.webp" alt="Malware"></td>
+        </tr>
+
+        <tr>
+          <td class="ataque">Ransomware</td>
+          <td>Tipo de malware que cifra archivos o bloquea sistemas y exige rescate (a menudo en criptomonedas) para devolver acceso.</td>
+          <td>Pérdida de datos, parálisis operativa, costos por recuperación y daños reputacionales.</td>
+          <td>Ataques a hospitales y municipalidades donde se cifraron sistemas críticos (p.ej. casos conocidos en 2010s–2020s).</td>
+          <td><img src="https://content.kaspersky-labs.com/fm/press-releases/fb/fbfd2b4d74e1b8d163a0edddb4807a0f/processed/ransomware-as-a-service-q75.jpg" alt="Ransomware"></td>
+        </tr>
+
+        <tr>
+          <td class="ataque">DDoS (Ataque de denegación de servicio)</td>
+          <td>Envío masivo y coordinado de solicitudes desde muchos equipos para saturar recursos y dejar servicios inaccesibles.</td>
+          <td>Interrupción de servicios web, pérdidas económicas, reputación dañada y costes en mitigación.</td>
+          <td>Ataque contra infraestructuras de DNS (p.ej. Dyn, 2016), que afectó a grandes plataformas online.</td>
+          <td><img src="https://www.clarin.com/2022/10/14/1Ne6BfXhx_2000x1500__1.jpg" alt="DDoS"></td>
+        </tr>
+
+        <tr>
+          <td class="ataque">Spyware</td>
+          <td>Software escondido que monitoriza la actividad del usuario y envía información sin que el usuario lo sepa.</td>
+          <td>Robo de contraseñas, seguimiento de navegación, espionaje corporativo o personal.</td>
+          <td>Apps móviles o extensiones que envían historiales y credenciales a terceros.</td>
+          <td><img src="https://latam.kaspersky.com/content/es-mx/images/repository/isc/2017-images/malware-img-54.jpg" alt="Spyware"></td>
+        </tr>
+
+        <tr>
+          <td class="ataque">Inyección SQL</td>
+          <td>Inserción de comandos maliciosos en campos de entrada para manipular las consultas a la base de datos.</td>
+          <td>Exposición o modificación de datos, acceso no autorizado a información sensible, pérdida de integridad.</td>
+          <td>Formularios web que no validan entradas permitiendo extraer tablas de la base de datos.</td>
+          <td><img src="https://web-assets.esetstatic.com/wls/2017/10/shutterstock_499692199.jpg" alt="SQL Injection"></td>
+        </tr>
+
+        <tr>
+          <td class="ataque">Man‑in‑the‑Middle (MitM)</td>
+          <td>El atacante intercepta y/o modifica la comunicación entre dos partes sin que estas lo detecten.</td>
+          <td>Robo de credenciales, manipulación de mensajes, robo de datos en tránsito y compromisos de sesiones.</td>
+          <td>Intercepción de tráfico en una Wi‑Fi pública no protegida para capturar contraseñas o cookies de sesión.</td>
+          <td><img src="https://s38063.pcdn.co/wp-content/uploads/2023/10/BlogPost-MPM-ManInTheMiddle-LC-85410.jpg.optimal.jpg" alt="MitM"></td>
+        </tr>
+
+        <tr>
+          <td class="ataque">Supply‑Chain / Ataque a la cadena de suministro</td>
+          <td>Comprometer software, servicios o componentes de terceros que luego se distribuyen a múltiples víctimas.</td>
+          <td>Compromiso masivo de clientes/usuarios a través de una actualización o biblioteca infectada; impacto a gran escala.</td>
+          <td>Inserción de código malicioso en un paquete de actualización legítimo (ej.: incidentes donde bibliotecas o proveedores fueron comprometidos).</td>
+          <td><img src="https://www.keepersecurity.com/assets/images/pages/threats/supply-chain-attack/supply-chain-attack-graphic.svg" alt="Supply Chain"></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="site-footer">
+    © 2025 — Ingrid Alejandra · Unidad 1 Ataques
+  </footer>
+
+  <script>
+    // JS para control simple del menú desplegable
+    document.querySelectorAll('.unit').forEach(unit=>{
+      const btn = unit.querySelector('button');
+      btn.addEventListener('click', ()=>{
+        const isOpen = unit.classList.contains('open');
+        document.querySelectorAll('.unit.open').forEach(u=>u.classList.remove('open'));
+        if(!isOpen) unit.classList.add('open');
+      });
+    });
+    document.addEventListener('click', e=>{
+      if(!e.target.closest('.unit'))
+        document.querySelectorAll('.unit.open').forEach(u=>u.classList.remove('open'));
+    });
+  </script>
+</body>
+</html>
