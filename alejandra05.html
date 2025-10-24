@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora</title>
+
+  <!-- Tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+  <style>
+    :root {
+      --vino: #5c1b1b;
+      --rojo-fuerte: #b83232;
+      --rojo-normal: #e04a4a;
+      --negro: #000000;
+      --gris-claro: #f9f9f9;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      margin: 0;
+      background-color: var(--gris-claro);
+      color: var(--negro);
+    }
+
+    /* Barra de navegación */
+    .navbar {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: linear-gradient(90deg, var(--vino), var(--rojo-fuerte));
+      color: #fff;
+      z-index: 1000;
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+    .navbar-brand {
+      color: white !important;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .nav > li > a {
+      color: white !important;
+      font-weight: bold;
+    }
+    .nav > li > a:hover, 
+    .dropdown-menu > li > a:hover {
+      background-color: var(--rojo-normal) !important;
+      color: white !important;
+    }
+    .dropdown-menu {
+      background-color: var(--rojo-fuerte);
+    }
+    .dropdown-menu > li > a {
+      color: white !important;
+    }
+
+    /* Título */
+    .jumbotron {
+      background-color: #fff;
+      color: var(--vino);
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    /* Calculadora */
+    .calculator {
+      background-color: var(--gris-claro);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      width: 300px;
+      margin: 0 auto 40px;
+    }
+
+    .display {
+      width: 100%;
+      height: 60px;
+      text-align: right;
+      padding: 10px;
+      font-size: 24px;
+      border: none;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      background-color: #fff;
+      color: var(--negro);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .buttons button {
+      padding: 20px;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      background-color: var(--rojo-fuerte);
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .buttons button:hover {
+      background-color: var(--rojo-normal);
+    }
+
+    .buttons .equal {
+      grid-column: span 2;
+      background-color: var(--vino);
+    }
+
+    .buttons .equal:hover {
+      background-color: #3e0e0e;
+    }
+
+    @media (max-width: 500px) {
+      .calculator {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Menú -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">INGRID ALEJANDRA SANCHEZ DE LA CRUZ</a>
+      <ul class="nav navbar-nav">
+        <li><a href="index.html">Inicio</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">UNIDAD 1 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="alejandra02.html">Conceptos</a></li>
+            <li><a href="alejandra03.html">Ataques</a></li>
+            <li><a href="alejandra04.html">Protección</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">UNIDAD 2 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="alejandra05.html">Calculadora</a></li>
+            <li><a href="Alejandra06.html">Películas</a></li>
+            <li><a href="Alejandra07.html">Temática</a></li>
+          </ul>
+        </li>
+        <li><a href="index7.html">UNIDAD 3</a></li>
+        <li><a href="perfil.html">Perfil</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Título -->
+  <div class="jumbotron">
+    <h2>Calculadora Web</h2>
+    <p>Usa los botones para realizar operaciones</p>
+  </div>
+
+  <!-- Calculadora -->
+  <div class="calculator">
+    <input type="text" id="ans" class="display" readonly />
+
+    <div class="buttons">
+      <button onclick="Clear()">C</button>
+      <button onclick="Backspace()">←</button>
+      <button onclick="Solve('%')">%</button>
+      <button onclick="Solve('/')">÷</button>
+
+      <button onclick="Solve('7')">7</button>
+      <button onclick="Solve('8')">8</button>
+      <button onclick="Solve('9')">9</button>
+      <button onclick="Solve('*')">×</button>
+
+      <button onclick="Solve('4')">4</button>
+      <button onclick="Solve('5')">5</button>
+      <button onclick="Solve('6')">6</button>
+      <button onclick="Solve('-')">−</button>
+
+      <button onclick="Solve('1')">1</button>
+      <button onclick="Solve('2')">2</button>
+      <button onclick="Solve('3')">3</button>
+      <button onclick="Solve('+')">+</button>
+
+      <button onclick="Solve('0')">0</button>
+      <button onclick="Solve('.')">.</button>
+      <button class="equal" onclick="Solve('=')">=</button>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    function Solve(val) {
+      const ans = document.getElementById("ans");
+      if (val === "=") {
+        try {
+          ans.value = eval(ans.value);
+        } catch (e) {
+          ans.value = "Error";
+        }
+      } else {
+        ans.value += val;
+      }
+    }
+
+    function Clear() {
+      document.getElementById("ans").value = "";
+    }
+
+    function Backspace() {
+      const ans = document.getElementById("ans");
+      ans.value = ans.value.slice(0, -1);
+    }
+  </script>
+
+</body>
+</html>

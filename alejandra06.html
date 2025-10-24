@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Tipografía -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <title>Películas</title>
+    <style>
+        :root {
+            --vino: #5c1b1b;
+            --rojo-fuerte: #b83232;
+            --rojo-normal: #e04a4a;
+            --negro: #000000;
+            --gris-claro: #f9f9f9;
+        }
+
+        body {
+            background-color: var(--gris-claro);
+            font-family: 'Orbitron', sans-serif;
+            margin: 0;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: linear-gradient(90deg, var(--vino), var(--rojo-fuerte));
+            color: #fff;
+            z-index: 1000;
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .nav > li > a {
+            color: white !important;
+            font-weight: bold;
+        }
+        .nav > li > a:hover, 
+        .dropdown-menu > li > a:hover {
+            background-color: var(--rojo-normal) !important;
+            color: white !important;
+        }
+        .dropdown-menu {
+            background-color: var(--rojo-fuerte);
+        }
+        .dropdown-menu > li > a {
+            color: white !important;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+            font-family: 'Orbitron', sans-serif;
+            font-style: normal;
+            color: var(--vino);
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        input[type="submit"] {
+            background-color: var(--rojo-fuerte);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: var(--rojo-normal);
+            color: white;
+        }
+
+        .movies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 20px;
+        }
+
+        .movie {
+            position: relative;
+        }
+
+        .movie img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+        }
+
+        .movie-info {
+            background-color: rgba(0, 0, 0, 0.75);
+            color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            text-align: center;
+        }
+
+        .movie:hover .movie-info {
+            opacity: 1;
+            border-radius: 15px;
+        }
+
+        .movie-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .movie-info span {
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .green {
+            color: #2ecc71;
+        }
+
+        .orange {
+            color: #f1c40f;
+        }
+
+        .red {
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">INGRID ALEJANDRA SANCHEZ DE LA CRUZ</a>
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Inicio</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">UNIDAD 1 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="alejandra02.html">Conceptos</a></li>
+                        <li><a href="alejandra03.html">Ataques</a></li>
+                        <li><a href="alejandra04.html">Protección</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">UNIDAD 2 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="alejandra05.html">Calculadora</a></li>
+                        <li><a href="Alejandra06.html">Películas</a></li>
+                        <li><a href="Alejandra07.html">Temática</a></li>
+                    </ul>
+                </li>
+                <li><a href="index7.html">UNIDAD 3</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Bienvenidos al buscador de Películas</h1>
+        <form id="form">
+            <input type="text" id="search" placeholder="Busca una película">
+            <input type="submit" value="Buscar">
+        </form>
+        <section id="main" class="movies"></section>
+    </div>
+
+    <script>
+        const API_URL = 'https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1';
+        const IMG_PATH = 'https://image.tmdb.org/t/p/w1280';
+        const SEARCH_API = 'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query=';
+
+        const main = document.getElementById('main');
+        const form = document.getElementById('form');
+        const search = document.getElementById('search');
+
+        getMovies(API_URL);
+
+        async function getMovies(url) {
+            const res = await fetch(url);
+            const data = await res.json();
+            showMovies(data.results);
+        }
+
+        function showMovies(movies) {
+            main.innerHTML = '';
+
+            movies.forEach((movie) => {
+                const { title, poster_path, vote_average, overview } = movie;
+
+                const movieEl = document.createElement('div');
+                movieEl.classList.add('movie');
+
+                movieEl.innerHTML = `
+                    <img src="${IMG_PATH + poster_path}" alt="${title}">
+                    <div class="movie-info">
+                        <h3>${title}</h3>
+                        <span class="${getClassByRate(vote_average)}">${vote_average}</span>
+                    </div>
+                    <div class="overview">
+                        <h3>Overview</h3>
+                        ${overview}
+                    </div>
+                `;
+                main.appendChild(movieEl);
+            });
+        }
+
+        function getClassByRate(vote) {
+            if (vote >= 8) {
+                return 'green';
+            } else if (vote >= 5) {
+                return 'orange';
+            } else {
+                return 'red';
+            }
+        }
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const searchTerm = search.value;
+            if (searchTerm && searchTerm !== '') {
+                getMovies(SEARCH_API + searchTerm);
+                search.value = '';
+            } else {
+                window.location.reload();
+            }
+        });
+    </script>
+</body>
+</html>

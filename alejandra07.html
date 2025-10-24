@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto</title>
+    <link href="https://fonts.cdnfonts.com/css/daddy-smile" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/flamante-semislab" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/linden-hill" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <style>
+        :root {
+            --wine-red: #8B0000; /* Changed to wine red */
+            --hover-wine-red: #A52A2A; /* Hover color for wine red */
+        }
+
+        h2 {
+            font-size: medium;
+        }
+
+        p {
+            font-family: 'Linden Hill', sans-serif;
+            font-size: 17px;
+        }
+
+        body {
+            text-align: center;
+            background-color: #fce4ec;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #ec407a;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: 'Daddy Smile', sans-serif;
+        }
+
+        #productos {
+            font-family: 'Flamante SemiSlab', sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+        }
+
+        .tarjeta {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 250px;
+            margin: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .tarjeta:hover {
+            transform: scale(1.05);
+        }
+
+        .tarjeta img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        footer {
+            background: #f8bbd0;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        /* Barra de navegación */
+        .navbar {
+            background-color: var(--wine-red);
+            border-radius: 0;
+            margin-bottom: 0;
+        }
+
+        .navbar-brand {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .nav > li > a {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .nav > li > a:hover, 
+        .dropdown-menu > li > a:hover {
+            background-color: var(--hover-wine-red) !important;
+            color: white !important;
+        }
+
+        .dropdown-menu {
+            background-color: var(--wine-red);
+        }
+
+        .dropdown-menu > li > a {
+            color: white !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menú -->
+    <nav class="navbar navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Inicio</a>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">UNIDAD 1 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="alejandra02.html">Conceptos</a></li>
+                        <li><a href="alejandra03.html">Ataques</a></li>
+                        <li><a href="alejandra04.html">Protección</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">UNIDAD 2 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="alejandra05.html">Calculadora</a></li>
+                        <li><a href="alejandra06.html">Películas</a></li>
+                        <li><a href="alejandra07.html">Temática</a></li>
+                    </ul>
+                </li>
+                <li><a href=".html">UNIDAD 3</a></li>
+                <li><a href="perfil.html">Perfil</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <h1>Catálogo de Productos</h1>
+    </header>
+
+    <div class="container" style="margin: 20px auto; max-width: 500px;">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Buscar producto..." id="busqueda">
+            <span class="input-group-btn">
+                <button class="btn btn-primary" type="button" id="btnBuscar" style="background-color: plum;">Buscar</button>
+            </span>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Esta API es DummyJSON Products API, permite acceder 
+            a la información de los productos en un listado, 
+            por nombre, imagen, descripción y más datos sobre
+            los productos</h2>
+    </div>
+
+    <main id="productos"></main>
+
+    <footer>
+        <h3>Integrantes del equipo:</h3>
+        <div style="margin-top: 10px;">
+            <button class="btn btn-primary" style="margin:5px;">Melany Yaretzy Vicente Hernández</button>
+            <button class="btn btn-primary" style="margin:5px;">Carlos Daniel Segura Hernández</button>
+            <button class="btn btn-primary" style="margin:5px;">Ingrid Alejandra Sánchez de la Cruz</button>
+            <button class="btn btn-primary" style="margin:5px;">Karen Estephania Cruz Lemus</button>
+            <button class="btn btn-primary" style="margin:5px;">Brisa Cruz Santiago</button>
+        </div>
+    </footer>
+
+    <script>
+        async function cargarProductos() {
+            const res = await fetch('https://dummyjson.com/products');
+            const data = await res.json();
+            const contenedor = document.getElementById('productos');
+            contenedor.innerHTML = '';
+
+            data.products.forEach(producto => {
+                const tarjeta = document.createElement('div');
+                tarjeta.className = 'tarjeta';
+                tarjeta.innerHTML = `
+                    <img src="${producto.thumbnail}" alt="${producto.title}">
+                    <h3>${producto.title}</h3>
+                    <p>${producto.description}</p>
+                    <p><b>Precio:</b> $${producto.price}</p>
+                `;
+                contenedor.appendChild(tarjeta);
+            });
+        }
+
+        cargarProductos();
+
+        const busqueda = document.getElementById('busqueda');
+        const btnBuscar = document.getElementById('btnBuscar');
+
+        btnBuscar.addEventListener('click', () => {
+            const termino = busqueda.value.toLowerCase();
+            filtrarProductos(termino);
+        });
+
+        busqueda.addEventListener('keyup', () => {
+            const termino = busqueda.value.toLowerCase();
+            filtrarProductos(termino);
+        });
+
+        function filtrarProductos(termino) {
+            const tarjetas = document.querySelectorAll('.tarjeta');
+            tarjetas.forEach(tarjeta => {
+                const titulo = tarjeta.querySelector('h3').textContent.toLowerCase();
+                const descripcion = tarjeta.querySelector('p').textContent.toLowerCase();
+                if (titulo.includes(termino) || descripcion.includes(termino)) {
+                    tarjeta.style.display = 'block';
+                } else {
+                    tarjeta.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
