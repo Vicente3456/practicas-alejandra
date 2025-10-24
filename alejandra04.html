@@ -2,259 +2,293 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculadora</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Unidad 1 - Protección</title>
 
-  <!-- Fuente estilo grafiti -->
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Spray+Paint&display=swap" rel="stylesheet">
+  <!-- Tipografía -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --rojo: #ff1744;
-      --vino: #880e4f;
-      --negro: #fdd6d6;
-      --gris-oscuro: #2c2c2c;
-      --blanco: #ffffff;
+    :root{
+      --vino: #5c1b1b;
+      --rojo-fuerte: #b83232;
+      --rojo-normal: #e04a4a;
+      --negro: #000000;
+      --gris-claro: #f9f9f9;
     }
 
-    body {
-      font-family: 'Rubik Spray Paint', cursive;
-      background-color: var(--negro);
-      color: var(--blanco);
-      margin: 0;
-      padding: 0;
-    }
-
-    /* NAVBAR */
-    nav {
-      background-color: var(--vino);
-      padding: 15px 20px;
-      color: var(--blanco);
-    }
-
-    .navbar-brand {
-      background-color: var(--rojo);
-      color: var(--blanco);
-      padding: 8px 16px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .navbar-menu {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-top: 10px;
-    }
-
-    .nav-item {
-      position: relative;
-    }
-
-    .nav-link {
-      color: var(--blanco);
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .dropdown-menu {
-      position: absolute;
-      top: 25px;
-      left: 0;
-      background-color: var(--gris-oscuro);
-      color: var(--blanco);
-      padding: 10px;
-      border-radius: 6px;
-      display: none;
-      z-index: 10;
-      min-width: 150px;
-    }
-
-    .nav-item:hover .dropdown-menu {
-      display: block;
-    }
-
-    .dropdown-menu a {
-      display: block;
-      color: var(--rojo);
-      text-decoration: none;
-      padding: 5px 0;
-    }
-
-    /* TÍTULO */
-    .jumbotron {
-      background-color: var(--gris-oscuro);
-      color: var(--rojo);
-      padding: 30px;
-      text-align: center;
-      margin: 30px auto;
-      border-radius: 12px;
-      max-width: 600px;
-      box-shadow: 0 0 20px var(--rojo);
-    }
-
-    /* CALCULADORA */
-    .calculator {
-      background-color: var(--gris-oscuro);
-      padding: 30px;
-      border-radius: 15px;
-      width: 350px;
-      margin: 0 auto 50px;
-      box-shadow: 0 0 25px var(--vino);
-    }
-
-    .display {
-      width: 100%;
-      height: 60px;
-      text-align: right;
-      font-size: 28px;
-      padding: 10px;
-      border-radius: 10px;
-      border: none;
-      background-color: var(--blanco);
+    body{
+      margin:0;
+      font-family: 'Orbitron', sans-serif;
+      background: var(--gris-claro);
       color: var(--negro);
-      margin-bottom: 25px;
-      font-family: monospace;
     }
 
-    .buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
+    /* NAV */
+    .navbar{
+      position:sticky;
+      top:0;
+      left:0;
+      right:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 20px;
+      background: linear-gradient(90deg, var(--vino), var(--rojo-fuerte));
+      color:#fff;
+      z-index:1000;
+    }
+    .brand{
+      color:#fff;
+      font-weight:800;
+      letter-spacing:1px;
+      text-decoration:none;
+      font-size:14px;
+    }
+    .menu{display:flex;gap:18px;align-items:center}
+    .unit{position:relative}
+    .unit > button{
+      background:none;border:none;color:#fff;font-weight:700;padding:8px 12px;cursor:pointer;font-family:inherit;
+    }
+    .dropdown{
+      position:absolute;top:calc(100% + 6px);left:0;
+      min-width:200px;background:#fff;border-radius:8px;
+      box-shadow:0 8px 24px rgba(0,0,0,0.2);
+      display:none;
+    }
+    .dropdown a{
+      display:block;
+      padding:10px 12px;
+      text-decoration:none;
+      color:var(--vino);
+      font-weight:600;
+      font-size:14px;
+    }
+    .dropdown a:hover{background:var(--rojo-normal);color:#fff}
+    .unit.open .dropdown{display:block}
+    .menu a.perfil{
+      color:#fff;
+      font-weight:700;
+      padding:8px 12px;
+      text-decoration:none;
+      font-family:inherit;
+    }
+    .menu a.perfil:hover{
+      background:var(--vino);
+      color:#fff;
     }
 
-    .buttons button {
-      padding: 20px;
-      font-size: 22px;
-      border: none;
-      border-radius: 10px;
-      background-color: var(--rojo);
-      color: var(--blanco);
-      cursor: pointer;
-      transition: transform 0.2s, background-color 0.2s;
+    /* CONTENIDO */
+    .container{
+      max-width:1100px;
+      margin:90px auto 40px;
+      padding:20px;
     }
 
-    .buttons button:hover {
-      background-color: #ff4569;
-      transform: scale(1.05);
+    h1{
+      text-align:center;
+      font-size:clamp(28px, 5vw, 52px);
+      color:var(--vino);
+      margin-bottom:30px;
+      border-bottom:4px solid var(--rojo-fuerte);
+      padding-bottom:10px;
     }
 
-    .buttons .equal {
-      grid-column: span 2;
-      background-color: var(--vino);
+    /* TABLA */
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      box-shadow:0 6px 20px rgba(0,0,0,0.15);
+      border-radius:12px;
+      overflow:hidden;
+    }
+    thead{
+      background:var(--vino);
+      color:#fff;
+    }
+    thead th{
+      padding:14px;
+      font-size:16px;
+      text-transform:uppercase;
+      border-bottom:2px solid var(--rojo-fuerte);
+    }
+    tbody td{
+      padding:14px;
+      font-size:15px;
+      border-bottom:1px solid #ddd;
+      vertical-align:top;
+    }
+    tbody tr:hover{
+      background:rgba(184,50,50,0.1);
+    }
+    .proteccion{
+      font-weight:700;
+      color:var(--rojo-fuerte);
+      font-size:16px;
+    }
+    tbody img{
+      max-width:120px;
+      border-radius:8px;
+      display:block;
+      margin:6px auto;
     }
 
-    .buttons .equal:hover {
-      background-color: #aa205f;
+    /* FOOTER */
+    .site-footer{
+      padding:20px;
+      text-align:center;
+      color:var(--vino);
+      font-size:13px;
+      background:#fff;
+      margin-top:50px;
     }
 
-    @media (max-width: 500px) {
-      .calculator {
-        width: 90%;
-      }
+    @media (max-width:900px){
+      thead th, tbody td { padding:10px; font-size:14px; }
+      tbody img { max-width:90px; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <a class="navbar-brand" href="index.html">Inicio</a>
+  <!-- NAV -->
+  <header class="navbar">
+    <a class="brand" href="index.html">INGRID ALEJANDRA SANCHEZ DE LA CRUZ</a>
+    <nav class="menu">
+      <a href="index.html" style="color:#fff; text-decoration:none; font-weight:700;">Inicio</a>
 
-    <div class="navbar-menu">
-      <div class="nav-item">
-        <span class="nav-link">UNIDAD 1 Ciberseguridad</span>
-        <div class="dropdown-menu">
-          <a href="./alejandra02.html">Conceptos</a>
-          <a href="./alejandra03.html">Ataques</a>
-          <a href="./alejandra04.html">Protección</a>
+      <div class="unit">
+        <button>UNIDAD 1 ▾</button>
+        <div class="dropdown">
+          <a href="alejandra02.html">Conceptos</a>
+          <a href="alejandra03.html">Ataques</a>
+          <a href="alejandra04.html">Protección</a>
         </div>
       </div>
 
-      <div class="nav-item">
-        <span class="nav-link">UNIDAD 2</span>
-        <div class="dropdown-menu">
-          <a href="./index4.html">Conceptos</a>
-          <a href="./index5.html">Ataques</a>
-          <a href="./index6.html">Protección</a>
+      <div class="unit">
+        <button>UNIDAD 2 ▾</button>
+        <div class="dropdown">
+          <a href="alejandra05.html">Calculadora</a>
+          <a href="alejandra06.html">Películas</a>
+          <a href="alejandra07.html">Temática</a>
         </div>
       </div>
 
-      <div class="nav-item">
-        <span class="nav-link">UNIDAD 3</span>
-        <div class="dropdown-menu">
-          <a href="./index7.html">Conceptos</a>
-          <a href="./index8.html">Ataques</a>
-          <a href="./index9.html">Protección</a>
+      <div class="unit">
+        <button>UNIDAD 3 ▾</button>
+        <div class="dropdown">
+          <a href="index7.html">Conceptos</a>
+          <a href="index8.html">Ataques</a>
+          <a href="index9.html">Protección</a>
         </div>
       </div>
-    </div>
-  </nav>
 
-  <!-- TÍTULO -->
-  <div class="jumbotron">
-    <h2>CALCULADORA ESTILO GRAFFITI</h2>
-    <p>¡Haz tus cuentas con estilo!</p>
-  </div>
+      <a href="perfil.html" class="perfil">Perfil</a>
+    </nav>
+  </header>
 
-  <!-- CALCULADORA -->
-  <div class="calculator">
-    <input type="text" id="ans" class="display" readonly />
+  <!-- CONTENIDO -->
+  <main class="container">
+    <h1>Protección contra Ataques Informáticos (Unidad 1)</h1>
 
-    <div class="buttons">
-      <button onclick="Clear()">C</button>
-      <button onclick="Backspace()">←</button>
-      <button onclick="Solve('%')">%</button>
-      <button onclick="Solve('/')">÷</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Método de Protección</th>
+          <th>Descripción</th>
+          <th>Efectividad</th>
+          <th>Ejemplo</th>
+          <th>Imagen</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="proteccion">Concientización y Educación</td>
+          <td>Capacitar a usuarios para reconocer correos, mensajes o sitios sospechosos que intenten suplantar identidades.</td>
+          <td>Alta, reduce significativamente los casos de phishing al aumentar la desconfianza en mensajes no verificados.</td>
+          <td>Entrenamiento empresarial para identificar correos falsos que piden credenciales.</td>
+          <td><img src="https://irp.cdn-website.com/122b4563/dms3rep/multi/Safetech+Innovations+Blog+Post+-+The+Importance+of+Phishing+Training+-+Awareness+Does+Content+Matter-+.png" alt="Phishing Training"></td>
+        </tr>
 
-      <button onclick="Solve('7')">7</button>
-      <button onclick="Solve('8')">8</button>
-      <button onclick="Solve('9')">9</button>
-      <button onclick="Solve('*')">×</button>
+        <tr>
+          <td class="proteccion">Antivirus y Antimalware</td>
+          <td>Software que detecta, bloquea y elimina programas maliciosos como virus, troyanos o gusanos.</td>
+          <td>Muy alta, aunque depende de actualizaciones regulares y la calidad del software.</td>
+          <td>Instalación de herramientas como Kaspersky o Malwarebytes para escanear y eliminar amenazas.</td>
+          <td><img src="https://www.gadsoftware.com/wp-content/uploads/2024/01/Antivirus.png" alt="Antivirus"></td>
+        </tr>
 
-      <button onclick="Solve('4')">4</button>
-      <button onclick="Solve('5')">5</button>
-      <button onclick="Solve('6')">6</button>
-      <button onclick="Solve('-')">−</button>
+        <tr>
+          <td class="proteccion">Copias de Seguridad</td>
+          <td>Realizar respaldos regulares de datos en ubicaciones seguras para recuperar información tras un ataque.</td>
+          <td>Alta, permite restaurar datos cifrados por ransomware sin pagar rescate.</td>
+          <td>Respaldos automáticos en la nube o discos externos desconectados tras cada respaldo.</td>
+          <td><img src="https://img.channelpartner.es/wp-content/uploads/2024/02/12140230/Backup-o-copias-de-seguridad.jpg" alt="Backup"></td>
+        </tr>
 
-      <button onclick="Solve('1')">1</button>
-      <button onclick="Solve('2')">2</button>
-      <button onclick="Solve('3')">3</button>
-      <button onclick="Solve('+')">+</button>
+        <tr>
+          <td class="proteccion">Firewalls y Balanceadores</td>
+          <td>Configurar firewalls y sistemas de balanceo de carga para filtrar tráfico malicioso y mitigar saturaciones.</td>
+          <td>Alta contra DDoS, reduce el impacto de tráfico masivo en servidores.</td>
+          <td>Uso de servicios como Cloudflare para dispersar tráfico en ataques DDoS.</td>
+          <td><img src="https://upload.wikimedia.org/wikipedia/commons/5/5b/Firewall.png" alt="Firewall"></td>
+        </tr>
 
-      <button onclick="Solve('0')">0</button>
-      <button onclick="Solve('.')">.</button>
-      <button class="equal" onclick="Solve('=')">=</button>
-    </div>
-  </div>
+        <tr>
+          <td class="proteccion">Detección de Spyware</td>
+          <td>Utilizar herramientas antimalware específicas para detectar y eliminar programas que monitorizan actividades.</td>
+          <td>Moderada a alta, efectiva si se combina con navegación segura y permisos restringidos.</td>
+          <td>Escanear dispositivos con software como Spybot para eliminar spyware oculto.</td>
+          <td><img src="https://www.anotherworld.com.au/shop/image/cache/catalog/logos/spybot-500x500.png" alt="Spybot"></td>
+        </tr>
 
-  <!-- FUNCIONALIDAD -->
+        <tr>
+          <td class="proteccion">Validación de Entradas</td>
+          <td>Implementar sanitización y validación estricta en formularios y consultas para evitar inyecciones maliciosas.</td>
+          <td>Muy alta, previene casi completamente las inyecciones SQL si se implementa correctamente.</td>
+          <td>Uso de consultas parametrizadas en aplicaciones web para evitar comandos SQL maliciosos.</td>
+          <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQvABHvkQhB-t2ZHHrcHmOw3bZIMU5BKL-SQ&s" alt="SQL Injection Prevention"></td>
+        </tr>
+
+        <tr>
+          <td class="proteccion">Cifrado y VPN</td>
+          <td>Usar protocolos seguros (HTTPS, TLS) y redes privadas virtuales para proteger datos en tránsito.</td>
+          <td>Alta, dificulta la intercepción de datos en ataques MitM, especialmente en redes públicas.</td>
+          <td>Conexión a una VPN como NordVPN en una red Wi-Fi pública para cifrar el tráfico.</td>
+          <td><img src="https://play-lh.googleusercontent.com/o1Dkg_yAUtjSWAalZ1Xu266QiGFLqxFH2mxRvoqavR-R0DQbUvHwbXgOkB-8bqdoyLU=w600-h300-pc0xffffff-pd" alt="VPN"></td>
+        </tr>
+
+        <tr>
+          <td class="proteccion">Verificación de Proveedores</td>
+          <td>Auditar y verificar la seguridad de software y servicios de terceros antes de integrarlos.</td>
+          <td>Moderada a alta, reduce riesgos si se implementan auditorías rigurosas y actualizaciones controladas.</td>
+          <td>Revisión de bibliotecas de código abierto antes de incluirlas en proyectos.</td>
+          <td><img src="https://www.xenonstack.com/hubfs/supply-chain-security-xenonstack.png" alt="Supply Chain Security"></td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+
+  <footer class="site-footer">
+    © 2025 — Ingrid Alejandra · Unidad 1 Protección
+  </footer>
+
   <script>
-    function Solve(val) {
-      const ans = document.getElementById("ans");
-      if (val === "=") {
-        try {
-          ans.value = eval(ans.value);
-        } catch (e) {
-          ans.value = "Error";
-        }
-      } else {
-        ans.value += val;
-      }
-    }
-
-    function Clear() {
-      document.getElementById("ans").value = "";
-    }
-
-    function Backspace() {
-      const ans = document.getElementById("ans");
-      ans.value = ans.value.slice(0, -1);
-    }
+    // JS para control simple del menú desplegable
+    document.querySelectorAll('.unit').forEach(unit=>{
+      const btn = unit.querySelector('button');
+      btn.addEventListener('click', ()=>{
+        const isOpen = unit.classList.contains('open');
+        document.querySelectorAll('.unit.open').forEach(u=>u.classList.remove('open'));
+        if(!isOpen) unit.classList.add('open');
+      });
+    });
+    document.addEventListener('click', e=>{
+      if(!e.target.closest('.unit'))
+        document.querySelectorAll('.unit.open').forEach(u=>u.classList.remove('open'));
+    });
   </script>
-
 </body>
 </html>
